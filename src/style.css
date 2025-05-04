@@ -1,0 +1,250 @@
+body{
+    margin-left: 50px;
+    margin-right: 50px;
+   
+}
+.main_title{
+font-family: 'Courier New', Courier, monospace;
+font-size: 40px;
+font-weight: bold;
+color: linear-gradient(145deg,rgba(0, 0, 0, 1) 0%, rgba(97, 97, 97, 1) 50%, rgba(163, 163, 163, 1) 100%) ;
+
+background: linear-gradient(to right, #000000 5%, #2200ff 8%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.sub_title{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: linear-gradient(145deg,rgba(0, 0, 0, 1) 0%, rgba(97, 97, 97, 1) 50%, rgba(163, 163, 163, 1) 100%) ;
+    background: linear-gradient(to right, #000000 40%, #2200ff 58%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+    .create_post_form{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-direction: column;
+    align-items: center;
+}
+.title_input{
+    width: 200px;
+    height: 30px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color 500ms ease 0s;
+    transition: all 500ms ease 0s;
+}
+.title_input:hover{
+    background-color: aliceblue;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+
+.title_input:focus{
+    background-color: aliceblue;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+
+.content_input{
+    width: 400px;
+    height: 35px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color 500ms ease 0s;
+    transition: all 500ms ease 0s; 
+}
+.content_input:hover{
+    background-color: aliceblue;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+
+
+.content_input:focus{
+    background-color: aliceblue;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+
+.form_button{
+    width: 140px;
+    height: 50px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 500ms ease 0s;
+}
+.form_button:hover{
+    background-color: #2200ff;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.form_button:focus{
+    background-color: #2200ff;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.post{
+   width: 400px;
+   height: 500px;
+  border-radius: 15px;
+border: #000000 2px solid;  
+}
+.post_main{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+.posts_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.post_title{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 22px;
+}
+.post_content{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+}
+.post_buttons{
+    display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 15px;
+}
+.post_edit_button{
+    width: 140px;
+    height: 50px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 500ms ease 0s;
+}
+.post_edit_button:hover{
+    background-color: #2200ff;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.post_edit_button:focus{
+    background-color: #2200ff;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.post_del_button{
+    width: 140px;
+    height: 50px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 500ms ease 0s;
+}
+.post_del_button:hover{
+    background-color: #2200ff;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.post_del_button:focus{
+    background-color: #2200ff;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.comments_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+}
+.comment{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    
+}
+.comments_list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 20px;
+
+}
+.comment_items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+
+}
+.comment_input{
+    width: 250px;
+    height: 30px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color 500ms ease 0s;
+    transition: all 500ms ease 0s; 
+}
+.comment_input:hover{
+    background-color: aliceblue;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.comment_input:focus{
+    background-color: aliceblue;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
+.comment_add_button{
+  padding-bottom: 20px;
+
+    width: 100px;
+    height: 45px;
+    border: #000000 2px solid;
+    border-radius: 5px;
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 500ms ease 0s;
+}
+.comment_add_button:hover{
+    background-color: #2200ff;
+    transition: all 500ms ease 0s;
+    box-shadow: 2px 2px 10px 0px #000000;
+}
