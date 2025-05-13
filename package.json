@@ -7,7 +7,7 @@
     "predeploy": "parcel build src/index.html",
     "startData": "json-server --watch ./src/data.json --port 3000",
     "start": "parcel src/index.html",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npx gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Mark4353/project/issues"
   },
-  "homepage": "https://github.com/Mark4353/project/",
+"homepage": "https://mark4353.github.io/project",
   "dependencies": {
     "express": "^5.1.0",
     "handlebars": "^4.7.8",
