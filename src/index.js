@@ -1,4 +1,4 @@
-    const API = "https://682364aa65ba058033969579.mockapi.io";
+    const API = "https://682364aa65ba058033969579.mockapi.io/";
 
     async function getPosts() {
       try {
