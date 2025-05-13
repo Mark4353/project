@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Mark4353/project/issues"
   },
-  "homepage": "https://github.com/Mark4353/project",
+  "homepage": "https://github.com/Mark4353/project/",
   "dependencies": {
     "express": "^5.1.0",
     "handlebars": "^4.7.8",
