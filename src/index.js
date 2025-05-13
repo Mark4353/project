@@ -1,4 +1,4 @@
-const API = "http://localhost:3000";
+const API = "https://682364aa65ba058033969579.mockapi.io/";
 
 async function getPosts() {
   try {
