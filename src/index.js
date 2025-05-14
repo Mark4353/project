@@ -37,13 +37,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function getPosts() {
   try {
-    const res = await fetch(`${API}/posts?_embed=comments`);
+    const res = await fetch(`${API}/posts`);
     const posts = await res.json();
-    renderPosts(posts);
-  } catch (err) {
-    console.error("Помилка завантаження постів:", err);
+
+    if (Array.isArray(posts)) {
+      renderPosts(posts);
+    } else {
+      console.error("Очікував масив, але отримав:", posts);
+    }
+  } catch (e) {
+    console.error("Помилка завантаження постів:", e);
   }
 }
+
 
 async function createPost(title, content) {
   await fetch(`${API}/posts`, {
@@ -79,6 +85,10 @@ async function createComment(postId, text) {
 }
 
 function renderPosts(posts) {
+  if (!Array.isArray(posts)) {
+    console.error("renderPosts: отримані дані не є масивом:", posts);
+    return;
+  }
   const container = document.getElementById("postsContainer");
   container.innerHTML = "";
   posts.forEach(post => {
