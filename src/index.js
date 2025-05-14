@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function getPosts() {
   try {
-    const res = await fetch(`${API}/posts`);
+    const res = await fetch(`${API}/posts?_embed=comments`);
     const posts = await res.json();
 
     if (Array.isArray(posts)) {
