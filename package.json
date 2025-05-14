@@ -2,14 +2,14 @@
   "name": "project",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "predeploy": "parcel build src/index.html",
-    "predeploy222": "parcel build src/index.html --dist-dir dist",
-    "startData": "json-server --watch ./src/data.json --port 3000",
-    "start": "parcel src/index.html",
-    "deploy": "parcel build src/index.html --no-cache --public-url /project/"
-  },
+"scripts": {
+  "start": "parcel src/index.html",
+  "build": "parcel build src/index.html --dist-dir dist --public-url /project/",
+  "predeploy": "npm run build",
+  "deploy": "npx gh-pages -d ./dist",
+  "startData": "json-server --watch ./src/data.json --port 3000"
+},
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mark4353/project.git"
@@ -19,7 +19,7 @@
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/Mark4353/project/issues"
+    "url": "https://github.com/Mark4353/project/"
   },
   "homepage": "https://mark4353.github.io/project",
   "dependencies": {
