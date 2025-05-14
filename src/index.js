@@ -96,23 +96,23 @@ function renderPosts(posts) {
     div.classList.add("post");
     div.innerHTML = `
       <div class="post_main">
-        <h2 class="post_title">${post.title}</h2>
-        <p class="post_content">${post.content}</p>
+        <h2 class="post_title">${posts.title}</h2>
+        <p class="post_content">${posts.content}</p>
       </div>
       <div class="post_buttons">
-        <button class="editPostButton post_edit_button" data-id="${post.id}">Редагувати</button>
-        <button class="deletePostButton post_del_button" data-id="${post.id}">Видалити</button>
+        <button class="editPostButton post_edit_button" data-id="${posts.id}">Редагувати</button>
+        <button class="deletePostButton post_del_button" data-id="${posts.id}">Видалити</button>
       </div>
       <div class="comments_box">
         <h3 class="comment">Коментарі</h3>
         <ul class="comments_list">
-          ${post.comments.length === 0 ? '<li class="comment_items">Немає коментарів</li>' : ""}
-          ${post.comments.map(c => `<li>${c.text}</li>`).join("")}
-          ${post.comments.length === 4 ? '<li class="comment_items">Максимальна кількість коментарів до посту - 4</li>' : ""}
+          ${posts.comments.length === 0 ? '<li class="comment_items">Немає коментарів</li>' : ""}
+          ${posts.comments.map(c => `<li>${c.text}</li>`).join("")}
+          ${posts.comments.length === 4 ? '<li class="comment_items">Максимальна кількість коментарів до посту - 4</li>' : ""}
         </ul>
-        <form class="createCommentForm" data-id="${post.id}">
-          ${post.comments.length >= 4 ? "" : `<input type="text" class="commentInput comment_input" placeholder="Новий коментар" required>`}
-          ${post.comments.length >= 4 ? "" : `<button type="submit" class="comment_add_button">Додати коментар</button>`}
+        <form class="createCommentForm" data-id="${posts.id}">
+          ${posts.comments.length >= 4 ? "" : `<input type="text" class="commentInput comment_input" placeholder="Новий коментар" required>`}
+          ${posts.comments.length >= 4 ? "" : `<button type="submit" class="comment_add_button">Додати коментар</button>`}
         </form>
       </div>
     `;
