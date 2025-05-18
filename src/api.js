@@ -1,9 +1,9 @@
-const API_URL = "https://682364aa65ba058033969579.mockapi.io/api";
+const API_URL = "https://682364aa65ba058033969579.mockapi.io/api/posts";
 
 export async function getPosts() {
   try {
-    const postsRes = await fetch(`${API_URL}/posts`);
-    const commentsRes = await fetch(`${API_URL}/comments`);
+    const postsRes = await fetch(`${API_URL}`);
+    const commentsRes = await fetch(`${API_URL}/1/comments`);
 
     const posts = await postsRes.json();
     const comments = await commentsRes.json();
@@ -56,7 +56,7 @@ export async function deletePost(id) {
 
 export async function createComment(postId, text) {
   try {
-    await fetch(`https://682364aa65ba058033969579.mockapi.io/api/comments`, {
+    await fetch(`https://682364aa65ba058033969579.mockapi.io/api/posts/1/comments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ postId, text }),
