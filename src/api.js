@@ -19,6 +19,7 @@ export async function getPosts() {
 }
 
 
+
 export async function createPost(title, content) {
   try {
     await fetch(API_URL, {
