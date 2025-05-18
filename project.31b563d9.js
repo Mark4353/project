@@ -160,11 +160,11 @@
       });
     }
   }
-})({"5j6Kf":[function(require,module,exports,__globalThis) {
+})({"74r1e":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 1234;
+var HMR_SERVER_PORT = 52752;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -671,7 +671,6 @@ var _apiJs = require("./api.js");
 var _postsJs = require("./posts.js");
 const createPostForm = document.getElementById("createPostForm");
 const postsContainer = document.getElementById("postsContainer");
-container.innerHTML = '';
 createPostForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
     const title = document.getElementById("titleInput").value;
@@ -722,7 +721,7 @@ parcelHelpers.export(exports, "createPost", ()=>createPost);
 parcelHelpers.export(exports, "updatePost", ()=>updatePost);
 parcelHelpers.export(exports, "deletePost", ()=>deletePost);
 parcelHelpers.export(exports, "createComment", ()=>createComment);
-const API_URL = "https://682364aa65ba058033969579.mockapi.io/api";
+const API_URL = "https://682364aa65ba058033969579.mockapi.io/api/posts";
 async function getPosts() {
     try {
         const res = await fetch(`${API_URL}?embed=comments`);
@@ -774,16 +773,17 @@ async function deletePost(id) {
         console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0432\u0438\u0434\u0430\u043B\u0435\u043D\u043D\u044F \u043F\u043E\u0441\u0442\u0430:", error);
     }
 }
-async function createComment(postId, comment) {
+async function createComment(postId, text) {
     try {
-        const post = await fetch(`${API_URL}/${postId}`).then((res)=>res.json());
-        post.comments.push(comment);
-        await fetch(`${API_URL}/${postId}`, {
-            method: "PUT",
+        await fetch(`https://682364aa65ba058033969579.mockapi.io/api/comments`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(post)
+            body: JSON.stringify({
+                postId,
+                text
+            })
         });
     } catch (error) {
         console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0434\u043E\u0434\u0430\u0432\u0430\u043D\u043D\u044F \u043A\u043E\u043C\u0435\u043D\u0442\u0430\u0440\u044F:", error);
@@ -824,17 +824,22 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderPosts", ()=>renderPosts);
-function renderPosts(posts) {
-    console.log(posts);
-    const container = document.getElementById('postsContainer');
-    const templateSource = document.getElementById('post-template').innerHTML;
-    const template = Handlebars.compile(templateSource);
-    const html = template({
-        posts
-    });
-    container.innerHTML = html;
-}
+const renderPosts = (posts)=>{
+    const container = document.querySelector(".posts_container");
+    container.innerHTML = posts.map((post)=>`
+    <div class="post" data-id="${post.id}">
+      <h2 class="post-title">${post.title}</h2>
+      <p class="post-description">${post.description}</p>
+      <button class="editPostButton" data-id="${post.id}">\u{420}\u{435}\u{434}\u{430}\u{433}\u{443}\u{432}\u{430}\u{442}\u{438}</button>
+      <button class="deletePostButton" data-id="${post.id}">\u{412}\u{438}\u{434}\u{430}\u{43B}\u{438}\u{442}\u{438}</button>
+      <form class="createCommentForm">
+        <input type="text" class="commentInput" placeholder="\u{41A}\u{43E}\u{43C}\u{435}\u{43D}\u{442}\u{430}\u{440}" required />
+        <button type="submit">\u{414}\u{43E}\u{434}\u{430}\u{442}\u{438} \u{43A}\u{43E}\u{43C}\u{435}\u{43D}\u{442}\u{430}\u{440}</button>
+      </form>
+    </div>
+  `).join("");
+};
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequirebbb8", {})
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["74r1e","a0t4e"], "a0t4e", "parcelRequirebbb8", {})
 
 //# sourceMappingURL=project.31b563d9.js.map
