@@ -31,17 +31,5 @@
     <div id="postsContainer" class="posts_container"></div>
 
     <script src="./src/index.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
-    <script type="module">
-      fetch("./src/postTemplate.hbs")
-        .then((res) => res.text())
-        .then((template) => {
-          const script = document.createElement("script");
-          script.id = "post-template";
-          script.type = "text/x-handlebars-template";
-          script.innerHTML = template;
-          document.body.appendChild(script);
-        });
-    </script>
   </body>
 </html>

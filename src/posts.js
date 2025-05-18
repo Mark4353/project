@@ -1,8 +1,15 @@
-export function renderPosts(posts) {
-    console.log(posts);
-  const container = document.getElementById('postsContainer');
-  const templateSource = document.getElementById('post-template').innerHTML;
-  const template = Handlebars.compile(templateSource);
-  const html = template({ posts });
-  container.innerHTML = html;
-}
+export const renderPosts = (posts) => {
+  const container = document.querySelector(".posts_container"); 
+  container.innerHTML = posts.map(post => `
+    <div class="post" data-id="${post.id}">
+      <h2 class="post-title">${post.title}</h2>
+      <p class="post-description">${post.description}</p>
+      <button class="editPostButton" data-id="${post.id}">Редагувати</button>
+      <button class="deletePostButton" data-id="${post.id}">Видалити</button>
+      <form class="createCommentForm">
+        <input type="text" class="commentInput" placeholder="Коментар" required />
+        <button type="submit">Додати коментар</button>
+      </form>
+    </div>
+  `).join("");
+};

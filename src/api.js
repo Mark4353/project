@@ -44,14 +44,12 @@ export async function deletePost(id) {
   }
 }
 
-export async function createComment(postId, comment) {
+export async function createComment(postId, text) {
   try {
-    const post = await fetch(`${API_URL}/${postId}`).then((res) => res.json());
-    post.comments.push(comment);
-    await fetch(`${API_URL}/${postId}`, {
-      method: "PUT",
+    await fetch(`https://682364aa65ba058033969579.mockapi.io/api/comments`, {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(post),
+      body: JSON.stringify({ postId, text }),
     });
   } catch (error) {
     console.error("Помилка додавання коментаря:", error);

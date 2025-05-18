@@ -9,7 +9,6 @@ import { renderPosts } from "./posts.js";
 
 const createPostForm = document.getElementById("createPostForm");
 const postsContainer = document.getElementById("postsContainer");
-container.innerHTML = '';
 createPostForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const title = document.getElementById("titleInput").value;
