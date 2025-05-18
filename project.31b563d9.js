@@ -160,11 +160,11 @@
       });
     }
   }
-})({"74r1e":[function(require,module,exports,__globalThis) {
+})({"5j6Kf":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 52752;
+var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -724,8 +724,14 @@ parcelHelpers.export(exports, "createComment", ()=>createComment);
 const API_URL = "https://682364aa65ba058033969579.mockapi.io/api/posts";
 async function getPosts() {
     try {
-        const res = await fetch(`${API_URL}?embed=comments`);
-        return await res.json();
+        const postsRes = await fetch(`${API_URL}`);
+        const posts = await postsRes.json();
+        const commentsRes = await fetch("https://682364aa65ba058033969579.mockapi.io/api/comments");
+        const comments = await commentsRes.json();
+        return posts.map((post)=>({
+                ...post,
+                comments: comments.filter((c)=>c.postId === post.id)
+            }));
     } catch (error) {
         console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F \u043F\u043E\u0441\u0442\u0456\u0432:", error);
         return [];
@@ -840,6 +846,6 @@ const renderPosts = (posts)=>{
   `).join("");
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["74r1e","a0t4e"], "a0t4e", "parcelRequirebbb8", {})
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequirebbb8", {})
 
 //# sourceMappingURL=project.31b563d9.js.map
