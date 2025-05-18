@@ -1,25 +1,4 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/project.2cdaf7bc.css">
-    <link rel="stylesheet" href="/project.497dfdab.css">
-    <title>Document</title>
-  </head>
-  <body>
-    <h1 class="main_title">chaTTeriO</h1>
-    <h2 class="sub_title">Створіть свій пост</h2>
-    <form id="createPostForm" class="create_post_form">
-      <input type="text" id="titleInput" class="title_input" placeholder="Заголовок" required="">
-      <textarea id="contentInput" class="content_input" placeholder="Зміст" required=""></textarea>
-
-      <button type="submit" class="form_button">Створити пост</button>
-    </form>
-
-    <div id="postsContainer" class="posts_container"></div>
-
-    <script src="/project.31b563d9.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
-    <script>// modules are defined as an array
+// modules are defined as an array
 // [ module function, map of requires ]
 //
 // map of requires is short require name -> numeric require
@@ -181,15 +160,15 @@
       });
     }
   }
-})({"1Zn3s":[function(require,module,exports,__globalThis) {
+})({"5j6Kf":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
-var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "40b3f37ee0b038f4";
+module.bundle.HMR_BUNDLE_ID = "d68ad56631b563d9";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_SERVER_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -687,18 +666,174 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     }
 }
 
-},{}],"ew8v5":[function(require,module,exports,__globalThis) {
-fetch("./src/postTemplate.hbs").then((res)=>res.text()).then((template)=>{
-    const script = document.createElement("script");
-    script.id = "post-template";
-    script.type = "text/x-handlebars-template";
-    script.innerHTML = template;
-    document.body.appendChild(script);
+},{}],"a0t4e":[function(require,module,exports,__globalThis) {
+var _apiJs = require("./api.js");
+var _postsJs = require("./posts.js");
+const createPostForm = document.getElementById("createPostForm");
+const postsContainer = document.getElementById("postsContainer");
+container.innerHTML = '';
+createPostForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const title = document.getElementById("titleInput").value;
+    const content = document.getElementById("contentInput").value;
+    await (0, _apiJs.createPost)(title, content);
+    const posts = await (0, _apiJs.getPosts)();
+    (0, _postsJs.renderPosts)(posts);
 });
+document.addEventListener("click", async (e)=>{
+    if (e.target.classList.contains("editPostButton")) {
+        const id = e.target.dataset.id;
+        const newTitle = prompt("\u041D\u043E\u0432\u0438\u0439 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A:");
+        const newContent = prompt("\u041D\u043E\u0432\u0438\u0439 \u0437\u043C\u0456\u0441\u0442:");
+        if (newTitle && newContent) {
+            await (0, _apiJs.updatePost)(id, newTitle, newContent);
+            const posts = await (0, _apiJs.getPosts)();
+            (0, _postsJs.renderPosts)(posts);
+        }
+    }
+    if (e.target.classList.contains("deletePostButton")) {
+        const id = e.target.dataset.id;
+        await (0, _apiJs.deletePost)(id);
+        const posts = await (0, _apiJs.getPosts)();
+        (0, _postsJs.renderPosts)(posts);
+    }
+});
+document.addEventListener("submit", async (e)=>{
+    if (e.target.classList.contains("createCommentForm")) {
+        e.preventDefault();
+        const commentInput = e.target.querySelector(".commentInput");
+        const postId = e.target.closest(".post").dataset.id;
+        const comment = commentInput.value;
+        await (0, _apiJs.createComment)(postId, comment);
+        const posts = await (0, _apiJs.getPosts)();
+        (0, _postsJs.renderPosts)(posts);
+    }
+});
+(async function startApp() {
+    const posts = await (0, _apiJs.getPosts)();
+    (0, _postsJs.renderPosts)(posts);
+})();
 
-},{}]},["1Zn3s","ew8v5"], "ew8v5", "parcelRequirebbb8", {})
+},{"./api.js":"38UJz","./posts.js":"aSqD4"}],"38UJz":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getPosts", ()=>getPosts);
+parcelHelpers.export(exports, "createPost", ()=>createPost);
+parcelHelpers.export(exports, "updatePost", ()=>updatePost);
+parcelHelpers.export(exports, "deletePost", ()=>deletePost);
+parcelHelpers.export(exports, "createComment", ()=>createComment);
+const API_URL = "https://682364aa65ba058033969579.mockapi.io/api";
+async function getPosts() {
+    try {
+        const res = await fetch(`${API_URL}?embed=comments`);
+        return await res.json();
+    } catch (error) {
+        console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F \u043F\u043E\u0441\u0442\u0456\u0432:", error);
+        return [];
+    }
+}
+async function createPost(title, content) {
+    try {
+        await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title,
+                content,
+                comments: []
+            })
+        });
+    } catch (error) {
+        console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F \u043F\u043E\u0441\u0442\u0430:", error);
+    }
+}
+async function updatePost(id, title, content) {
+    try {
+        await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title,
+                content
+            })
+        });
+    } catch (error) {
+        console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u043E\u043D\u043E\u0432\u043B\u0435\u043D\u043D\u044F \u043F\u043E\u0441\u0442\u0430:", error);
+    }
+}
+async function deletePost(id) {
+    try {
+        await fetch(`${API_URL}/${id}`, {
+            method: "DELETE"
+        });
+    } catch (error) {
+        console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0432\u0438\u0434\u0430\u043B\u0435\u043D\u043D\u044F \u043F\u043E\u0441\u0442\u0430:", error);
+    }
+}
+async function createComment(postId, comment) {
+    try {
+        const post = await fetch(`${API_URL}/${postId}`).then((res)=>res.json());
+        post.comments.push(comment);
+        await fetch(`${API_URL}/${postId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        });
+    } catch (error) {
+        console.error("\u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0434\u043E\u0434\u0430\u0432\u0430\u043D\u043D\u044F \u043A\u043E\u043C\u0435\u043D\u0442\u0430\u0440\u044F:", error);
+    }
+}
 
-</script>
-  
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
-</body></html>
+},{}],"aSqD4":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "renderPosts", ()=>renderPosts);
+function renderPosts(posts) {
+    const container = document.getElementById('postsContainer');
+    const templateSource = document.getElementById('post-template').innerHTML;
+    const template = Handlebars.compile(templateSource);
+    const html = template({
+        posts
+    });
+    container.innerHTML = html;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequirebbb8", {})
+
+//# sourceMappingURL=project.31b563d9.js.map
