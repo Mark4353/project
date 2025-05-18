@@ -16,9 +16,7 @@ export async function getPosts() {
     console.error("Помилка завантаження постів:", error);
     return [];
   }
-}
-
-
+}   
 
 export async function createPost(title, content) {
   try {
