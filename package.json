@@ -2,14 +2,13 @@
   "name": "project",
   "version": "1.0.0",
   "description": "",
-"scripts": {
-  "start": "parcel src/index.html",
-  "build": "parcel build src/index.html --dist-dir dist --public-url /project/",
-  "predeploy": "npm run build",
-  "deploy": "npx gh-pages -d ./dist",
-  "startData": "json-server --watch ./src/data.json --port 3000"
-},
-
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build src/index.html --dist-dir dist --public-url /project/",
+    "predeploy": "npm run build",
+    "deploy": "npx gh-pages -d ./dist",
+    "startData": "json-server --watch ./db.json --port 3000"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mark4353/project.git"
@@ -26,7 +25,7 @@
     "express": "^5.1.0",
     "handlebars": "^4.7.8",
     "json-server": "^1.0.0-beta.3",
-    "parcel": "^2.15.0"
+    "parcel": "^2.15.1"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
