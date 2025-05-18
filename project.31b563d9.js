@@ -825,6 +825,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderPosts", ()=>renderPosts);
 function renderPosts(posts) {
+    console.log(posts);
     const container = document.getElementById('postsContainer');
     const templateSource = document.getElementById('post-template').innerHTML;
     const template = Handlebars.compile(templateSource);

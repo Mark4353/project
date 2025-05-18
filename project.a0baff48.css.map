@@ -1,0 +1,1 @@
+{"mappings":"ACAA","sources":["project.a0baff48.css","src/reset.css"],"sourcesContent":["li {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n/*# sourceMappingURL=project.a0baff48.css.map */\n","li{\r\n    list-style: none;\r\n    margin: 0;\r\n    padding: 0;\r\n}"],"names":[],"version":3,"file":"project.a0baff48.css.map"}
