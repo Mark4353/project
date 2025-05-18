@@ -721,12 +721,12 @@ parcelHelpers.export(exports, "createPost", ()=>createPost);
 parcelHelpers.export(exports, "updatePost", ()=>updatePost);
 parcelHelpers.export(exports, "deletePost", ()=>deletePost);
 parcelHelpers.export(exports, "createComment", ()=>createComment);
-const API_URL = "https://682364aa65ba058033969579.mockapi.io/api/posts";
+const API_URL = "https://682364aa65ba058033969579.mockapi.io/api";
 async function getPosts() {
     try {
-        const postsRes = await fetch(`${API_URL}`);
+        const postsRes = await fetch(`${API_URL}/posts`);
+        const commentsRes = await fetch(`${API_URL}/comments`);
         const posts = await postsRes.json();
-        const commentsRes = await fetch("https://682364aa65ba058033969579.mockapi.io/api/comments");
         const comments = await commentsRes.json();
         return posts.map((post)=>({
                 ...post,
