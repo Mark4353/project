@@ -1,4 +1,4 @@
-const API_URL = "https://682364aa65ba058033969579.mockapi.io/api";
+const API_URL = "https://682364aa65ba058033969579.mockapi.io/api/posts";
 
 export async function getPosts() {
   try {

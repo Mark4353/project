@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build src/index.html --dist-dir dist --public-url /project/",
+    "build": "parcel build index.html --dist-dir dist --public-url /project/",
     "predeploy": "npm run build",
     "deploy": "npx gh-pages -d ./dist",
     "startData": "json-server --watch ./db.json --port 3000"
