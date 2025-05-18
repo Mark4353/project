@@ -2,13 +2,23 @@ const API_URL = "https://682364aa65ba058033969579.mockapi.io/api/posts";
 
 export async function getPosts() {
   try {
-    const res = await fetch(`${API_URL}?embed=comments`);
-    return await res.json();
+    const postsRes = await fetch(`${API_URL}`);
+    const posts = await postsRes.json();
+
+    const commentsRes = await fetch("https://682364aa65ba058033969579.mockapi.io/api/comments");
+    const comments = await commentsRes.json();
+
+
+    return posts.map(post => ({
+      ...post,
+      comments: comments.filter(c => c.postId === post.id)
+    }));
   } catch (error) {
     console.error("Помилка завантаження постів:", error);
     return [];
   }
 }
+
 
 export async function createPost(title, content) {
   try {
